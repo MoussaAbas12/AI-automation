@@ -1,0 +1,273 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Contactez-nous",
+        "formDescription": "Nous vous répondrons dans les plus brefs délais.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Nom",
+              "placeholder": "Nom",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Email",
+              "fieldType": "email",
+              "placeholder": "Email",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Prix",
+              "fieldType": "radio",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "10000"
+                  },
+                  {
+                    "option": "50000"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "message",
+              "fieldType": "textarea",
+              "placeholder": "Votre  Message",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        -352,
+        0
+      ],
+      "id": "d3d12bad-2fb1-4857-8709-c6cf64961671",
+      "name": "On form submission",
+      "webhookId": "32264b6e-e7c9-46f3-821d-e7be932c5ac9"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1MW67H2oFqGkiZMUM2HULvU8s_Gh7mqu4WbKp2yeV360",
+          "mode": "list",
+          "cachedResultName": "N8NAU1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1MW67H2oFqGkiZMUM2HULvU8s_Gh7mqu4WbKp2yeV360/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Feuille 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1MW67H2oFqGkiZMUM2HULvU8s_Gh7mqu4WbKp2yeV360/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "={{ $json.Nom }}",
+            "Email": "={{ $json.Email }}",
+            "Message": "={{ $json.message }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Message",
+              "displayName": "Message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -48,
+        -304
+      ],
+      "id": "17916de4-7e35-43e5-863a-f9bdca1771fa",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "nkqo1XuWedjaV0hM",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "5d061bd6-b7a2-4eed-9833-354f85951545",
+              "leftValue": "={{ $json.Prix }}",
+              "rightValue": 10000,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -64,
+        16
+      ],
+      "id": "ac565b3c-01e2-409c-a04c-8df43a69cf77",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "sendTo": "nabdoismael@gmail.com",
+        "subject": "New lead ",
+        "emailType": "text",
+        "message": "=Bonjour Moussa,\n\nVous avez reçu un nouveau message de la part d’un client.\n\nMessage du client :\n{{ $json.message }}\n\nBudget / Prix indiqué :\n{{ $json.Prix }}\n\n{{ $json.submittedAt }}\nMerci de consulter le message et de reprendre contact avec le client si nécessaire.\n\n—\nNotification automatique",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        208,
+        -96
+      ],
+      "id": "b8b4df9e-8bd7-4042-82be-829b9747cd18",
+      "name": "Send a message",
+      "webhookId": "be287efc-8289-4c69-a621-0f942acd0d1e",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "3c21MC1AUuNYUwnM",
+          "name": "testn8n"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C0A4XBDTFFE",
+          "mode": "list",
+          "cachedResultName": "social"
+        },
+        "text": "=🚨 Nouveau lead – Budget élevé\n\nHey Moussa 👋\nUn nouveau client avec un budget élevé vient de soumettre un message.\n\n💬 Message du client :\n{{ $json.message }}\n\n💰 Budget / Prix indiqué :\n{{ $json.Prix }}\n\n👉 Ce lead semble prioritaire.\nPense à le traiter rapidement.\n\n—\nNotification automatique",
+        "otherOptions": {
+          "includeLinkToWorkflow": false,
+          "link_names": false
+        }
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        208,
+        128
+      ],
+      "id": "869790df-cc49-48e7-82ba-a633fc1c3155",
+      "name": "Send a message1",
+      "webhookId": "0a6db2cb-2bc4-4e38-ad28-80ea716b9ecd",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "AH6H9FdRPYkCkClu",
+          "name": "Slack account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "00d71d62-2649-4b85-bb72-4d515f70c473",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "9971385e2f4773b6f7f5ef9714c6d24991b34174d14259b3a1627367de5c5c99"
+  },
+  "id": "vHuItwKUFAqTM8cU",
+  "tags": []
+}
