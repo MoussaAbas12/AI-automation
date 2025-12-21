@@ -5,7 +5,7 @@ Il contient l’ensemble des **notes de formation**, des **exemples de workflows
 
 L’objectif de ce dépôt est de fournir un support pratique et durable pour mieux comprendre les bases de l’automatisation, l’utilisation de l’intelligence artificielle et la création d’agents IA avec n8n.
 
----
+
 
 ## 🎯 Objectifs de la formation
 
