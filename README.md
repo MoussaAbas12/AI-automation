@@ -21,14 +21,6 @@ L’objectif de ce dépôt est de fournir un support pratique et durable pour mi
 
 ---
 
-## 📁 Contenu du repository
-
-
-
-
-
----
-
 ## ⚙️ Prérequis
 
 - Un **ordinateur** (Windows, macOS ou Linux)
@@ -36,9 +28,9 @@ L’objectif de ce dépôt est de fournir un support pratique et durable pour mi
 - Un compte **n8n** (Cloud, local ou auto-hébergé)
 - Aucune connaissance préalable en automatisation ou en programmation n’est requise
 
----
 
-## 🚀 Comment utiliser les workflows n8n
+
+## Comment utiliser les workflows n8n
 
 1. Ouvrez votre interface **n8n**
 2. Cliquez sur **Import workflow**
@@ -48,7 +40,7 @@ L’objectif de ce dépôt est de fournir un support pratique et durable pour mi
 
 ---
 
-## 🧠 À propos des agents IA
+## À propos des agents IA
 
 Les agents IA présentés dans cette formation utilisent :
 - des modèles de langage (LLM)
@@ -58,16 +50,14 @@ Les agents IA présentés dans cette formation utilisent :
 
 L’objectif n’est pas la complexité, mais la **compréhension des concepts clés**.
 
----
 
-## 💬 Questions & contributions
+##  Questions & contributions
 
 Ce repository est avant tout un **support pédagogique**.  
 Les suggestions, corrections et améliorations sont les bienvenues.
 
 Si vous débutez, n’hésitez pas à explorer, tester, casser des choses et recommencer — c’est la meilleure façon d’apprendre.
 
----
 
 ## 👤 Auteur
 
@@ -77,7 +67,7 @@ Passionné par l’automatisation, l’intelligence artificielle et les technolo
 
 ---
 
-## 📜 Licence
+##  Licence
 
 Ce projet est partagé à des fins éducatives.  
 Vous êtes libre de l’utiliser, le modifier et l’adapter pour votre apprentissage personnel.
